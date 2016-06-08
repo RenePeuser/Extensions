@@ -259,5 +259,13 @@ namespace Extensions
             CollectionExtensions.RemoveRange(items, itemsToRemove);
             return items;
         }
+
+        public static bool CheckForValues<T>(this IEnumerable<T> source, params object[] expectedValues)
+        {
+            Contract.Requires(source.IsNotNull());
+
+            var sourceArray = source.ToArray();
+            return sourceArray.CheckForValues(expectedValues);
+        }
     }
 }
