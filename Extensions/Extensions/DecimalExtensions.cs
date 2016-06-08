@@ -15,11 +15,6 @@ namespace Extensions
             return Math.Round(percent, 0);
         }
 
-        public static double ToDouble(this decimal value)
-        {
-            return value.Cast<double>();
-        }
-
         public static bool IsMinValue(this decimal value)
         {
             return value == decimal.MinValue;
@@ -33,6 +28,11 @@ namespace Extensions
         public static int ToInt(this decimal value)
         {
             return value.Cast<int>();
+        }
+
+        public static double ToDouble(this decimal value)
+        {
+            return value.Cast<double>();
         }
     }
 }

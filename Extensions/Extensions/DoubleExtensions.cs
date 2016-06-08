@@ -1,42 +1,36 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
 
 namespace Extensions
 {
     public static class DoubleExtensions
     {
-        public static int CalcPercent(this double source, double divisor)
+        public static double CalcPercent(this double source, double divisor, int decimals = 0)
         {
-            if (divisor.Equals(0))
-            {
-                return 0;
-            }
+            Contract.Requires(divisor.NotRefEquals(0));
 
             var percent = divisor / source * 100;
-            return (int)Math.Round(percent, 0);
+            return Math.Round(percent, decimals);
         }
 
-        public static double Subtract(this IEnumerable<double> source)
+        public static bool IsMinValue(this double value)
         {
-            Contract.Requires(source.IsNotNull());
+            return value.Equals(double.MinValue);
+        }
 
-            var sourceList = source.ToList();
-            var difference = sourceList.First();
-            var count = sourceList.Count;
+        public static bool IsMaxValue(this double value)
+        {
+            return value.Equals(double.MaxValue);
+        }
 
-            for (int i = 1; i < count; i++)
-            {
-                difference -= sourceList[i];
-            }
-
-            return difference;
+        public static int ToInt(this double value)
+        {
+            return value.Cast<int>();
         }
 
         public static decimal ToDecimal(this double value)
         {
-            return (decimal)value;
+            return value.Cast<decimal>();
         }
     }
 }

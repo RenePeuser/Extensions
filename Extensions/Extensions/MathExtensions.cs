@@ -438,6 +438,8 @@ namespace Extensions
         }
 
 
+
+
         public static int Subtract(this int val1, int val2)
         {
             return val1 - val2;
@@ -619,11 +621,11 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            var product = 0;
-            for (var i = 0; i < values.Count; i++)
+            var product = values.FirstOrDefault();
+
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) { product = values[i]; }
-                checked { product *= values[i]; }
+                product *= values[i];
             }
             return product;
         }
@@ -633,12 +635,11 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            long product = 0;
+            var product = values.FirstOrDefault();
 
-            for (var i = 0; i < values.Count; i++)
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) product = values[i];
-                checked { product *= values[i]; }
+                product *= values[i];
             }
             return product;
         }
@@ -648,11 +649,10 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            float product = 0;
+            var product = values.FirstOrDefault();
 
-            for (var i = 0; i < values.Count; i++)
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) product = values[i];
                 product *= values[i];
             }
             return product;
@@ -663,11 +663,10 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            double product = 0;
+            var product = values.FirstOrDefault();
 
-            for (var i = 0; i < values.Count; i++)
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) product = values[i];
                 product *= values[i];
             }
             return product;
@@ -679,11 +678,10 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            decimal product = 0;
+            var product = values.FirstOrDefault();
 
-            for (var i = 0; i < values.Count; i++)
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) product = values[i];
                 product *= values[i];
             }
             return product;
@@ -697,11 +695,11 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            var product = 0;
-            for (var i = 0; i < values.Count; i++)
+            var product = values.FirstOrDefault();
+
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) { product = values[i]; }
-                checked { product -= values[i]; }
+                product -= values[i];
             }
             return product;
         }
@@ -711,12 +709,11 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            long product = 0;
+            var product = values.FirstOrDefault();
 
-            for (var i = 0; i < values.Count; i++)
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) product = values[i];
-                checked { product -= values[i]; }
+                product -= values[i];
             }
             return product;
         }
@@ -726,11 +723,10 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            float product = 0;
+            var product = values.FirstOrDefault();
 
-            for (var i = 0; i < values.Count; i++)
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) product = values[i];
                 product -= values[i];
             }
             return product;
@@ -741,11 +737,10 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            double product = 0;
+            var product = values.FirstOrDefault();
 
-            for (var i = 0; i < values.Count; i++)
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) product = values[i];
                 product -= values[i];
             }
             return product;
@@ -757,11 +752,10 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            decimal product = 0;
+            var product = values.FirstOrDefault();
 
-            for (var i = 0; i < values.Count; i++)
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) product = values[i];
                 product -= values[i];
             }
             return product;
@@ -775,11 +769,11 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            var product = 0;
-            for (var i = 0; i < values.Count; i++)
+            var product = values.FirstOrDefault();
+
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) { product = values[i]; }
-                checked { product /= values[i]; }
+                product /= values[i];
             }
             return product;
         }
@@ -789,12 +783,11 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            long product = 0;
+            var product = values.FirstOrDefault();
 
-            for (var i = 0; i < values.Count; i++)
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) product = values[i];
-                checked { product /= values[i]; }
+                product /= values[i];
             }
             return product;
         }
@@ -804,11 +797,10 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            float product = 0;
+            var product = values.FirstOrDefault();
 
-            for (var i = 0; i < values.Count; i++)
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) product = values[i];
                 product /= values[i];
             }
             return product;
@@ -819,11 +811,10 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            double product = 0;
+            var product = values.FirstOrDefault();
 
-            for (var i = 0; i < values.Count; i++)
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) product = values[i];
                 product /= values[i];
             }
             return product;
@@ -835,11 +826,10 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var values = source.ToList();
-            decimal product = 0;
+            var product = values.FirstOrDefault();
 
-            for (var i = 0; i < values.Count; i++)
+            for (var i = 1; i < values.Count; i++)
             {
-                if (i < 1) product = values[i];
                 product /= values[i];
             }
             return product;
