@@ -33,6 +33,7 @@ namespace Extensions
             var collectionViews = compositeCollection.OfType<CollectionContainer>()
                 .Select(item => item.Collection)
                 .OfType<T>();
+
             return collectionViews;
         }
     }
