@@ -19,8 +19,7 @@ namespace WpfExtensions
 
             if (!collectionViews.Any())
             {
-                throw new ArgumentException(
-                    "CompositeCollection does not contains ICollectionView to set sort description");
+                throw new ArgumentException("CompositeCollection does not contains ICollectionView to set sort description");
             }
 
             collectionViews.ForEach(item => item.UpdateSortDescription(sortDescription));
@@ -31,10 +30,7 @@ namespace WpfExtensions
         {
             Contract.Requires(compositeCollection.IsNotNull());
 
-            var collectionViews = compositeCollection.OfType<CollectionContainer>()
-                .Select(item => item.Collection)
-                .OfType<T>();
-
+            var collectionViews = compositeCollection.OfType<CollectionContainer>().Select(item => item.Collection).OfType<T>();
             return collectionViews;
         }
     }
