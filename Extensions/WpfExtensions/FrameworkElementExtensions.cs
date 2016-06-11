@@ -1,7 +1,8 @@
 ﻿using System.Diagnostics.Contracts;
 using System.Windows;
+using Extensions;
 
-namespace Extensions
+namespace WpfExtensions
 {
     public static class FrameworkElementExtensions
     {

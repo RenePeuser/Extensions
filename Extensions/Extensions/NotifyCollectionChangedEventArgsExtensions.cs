@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.Diagnostics.Contracts;
 
 namespace Extensions
@@ -10,7 +9,7 @@ namespace Extensions
         {
             Contract.Requires(e.IsNotNull());
 
-            var deltaMovement = e.NewStartingIndex.Subtract(e.OldStartingIndex);
+            var deltaMovement = e.NewStartingIndex - e.OldStartingIndex;
             return deltaMovement;
         }
     }

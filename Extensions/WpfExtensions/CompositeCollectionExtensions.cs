@@ -4,8 +4,9 @@ using System.ComponentModel;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Windows.Data;
+using Extensions;
 
-namespace Extensions
+namespace WpfExtensions
 {
     public static class CompositeCollectionExtensions
     {

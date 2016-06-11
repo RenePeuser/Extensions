@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.Linq.Expressions;
+using Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Extensions
+namespace TestExtension
 {
     public static class PrivateObjectExtensions
     {

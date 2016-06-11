@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using Extensions;
 
-namespace Extensions
+namespace WpfExtensions
 {
     public static class CollectionViewExtensions
     {

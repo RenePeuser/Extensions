@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Extensions
+namespace WpfExtensions
 {
     public static class SortDescriptionExtensions
     {

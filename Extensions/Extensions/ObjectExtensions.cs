@@ -225,5 +225,190 @@ namespace Extensions
 
             return value.Cast<CultureInfo>();
         }
+
+        public static bool IsNotPublic(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsNotPublic;
+        }
+
+        public static bool IsPublic(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsPublic;
+        }
+
+        public static bool IsNestedPublic(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsNestedPublic;
+        }
+
+        public static bool IsNestedPrivate(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsNestedPrivate;
+        }
+
+        public static bool IsNestedFamily(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsNestedFamily;
+        }
+
+        public static bool IsNestedAssembly(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsNestedAssembly;
+        }
+
+        public static bool IsNestedFamAndAssem(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsNestedFamANDAssem;
+        }
+
+        public static bool IsNestedFamOrAssem(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsNestedFamORAssem;
+        }
+
+        public static bool IsAutoLayout(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsAutoLayout;
+        }
+
+        public static bool IsLayoutSequential(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsLayoutSequential;
+        }
+
+        public static bool IsExplicitLayout(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsExplicitLayout;
+        }
+
+        public static bool IsClass(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsClass;
+        }
+
+        public static bool IsInterface(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsInterface;
+        }
+
+        public static bool IsValueType(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsValueType;
+        }
+
+        public static bool IsAbstract(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsAbstract;
+        }
+
+        public static bool IsSealed(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsSealed;
+        }
+
+        public static bool IsEnum(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsEnum;
+        }
+
+        public static bool IsSpecialName(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsSpecialName;
+        }
+
+        public static bool IsImport(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsImport;
+        }
+
+        public static bool IsSerializable(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsSerializable;
+        }
+
+        public static bool IsAnsiClass(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsAnsiClass;
+        }
+
+        public static bool IsUnicodeClass(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsUnicodeClass;
+        }
+
+        public static bool IsAutoClass(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsAutoClass;
+        }
+
+        public static bool IsArray(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsArray;
+        }
+
+        public static bool IsByRef(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsByRef;
+        }
+
+        public static bool IsPointer(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsPointer;
+        }
+
+        public static bool IsPrimitive(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsPrimitive;
+        }
+
+        public static bool IsComObject(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsCOMObject;
+        }
+
+        public static bool IsContextful(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsContextful;
+        }
+
+        public static bool IsMarshalByRef(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().IsMarshalByRef;
+        }
+        public static bool HasElementType(this object source)
+        {
+            Contract.Requires(source.IsNotNull());
+            return source.GetType().HasElementType;
+        }
     }
 }
