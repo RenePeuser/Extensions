@@ -2,11 +2,25 @@
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 
 namespace Extensions
 {
     public static class ObjectExtensions
     {
+        public static bool CheckForValues(this object source, params object[] expectedValues)
+        {
+            Contract.Requires(source.IsNotNull());
+
+            if (expectedValues.IsNull())
+            {
+                return source.IsNull();
+            }
+
+            var result = expectedValues.Any(item => expectedValues.Any(value => item.EqualityEquals(source)));
+            return result;
+        }
+
         public static T GetCustomAttribute<T>(this object source, bool inherit = false) where T : Attribute
         {
             Contract.Requires(source.IsNotNull());
