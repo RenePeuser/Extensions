@@ -8,7 +8,7 @@ namespace Extensions
 {
     public static class ObjectExtensions
     {
-        public static bool CheckForValues(this object source, params object[] expectedValues)
+        public static bool HasAny(this object source, params object[] expectedValues)
         {
             Contract.Requires(source.IsNotNull());
 
@@ -131,22 +131,6 @@ namespace Extensions
 
             var value = source.ToString();
             return value.ToGuid();
-        }
-
-
-        public static bool NullableEqual(this object source, object target)
-        {
-            if (source.IsNull() || target.IsNull())
-            {
-                return RefEquals(source, target);
-            }
-
-            return source.Equals(target);
-        }
-
-        public static bool NullableNotEqual(this object source, object target)
-        {
-            return !source.NullableEqual(target);
         }
 
         public static int ToInt(this object source)

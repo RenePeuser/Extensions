@@ -179,7 +179,7 @@ namespace Extensions
             return first.OfType<TSource>().SequenceEqual(second.OfType<TSource>());
         }
 
-        public static ReadOnlyCollection<T> ToImmutable<T>(this IEnumerable<T> source)
+        public static ReadOnlyCollection<T> ToReadOnlyCollection<T>(this IEnumerable<T> source)
         {
             Contract.Requires(source.IsNotNull());
 

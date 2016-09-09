@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -16,13 +15,6 @@ namespace Extensions
             Contract.Requires(expression.IsNotNull());
 
             return expression.NameOf();
-        }
-
-        public static string NameOf<T>(Expression<Func<T>> expression)
-        {
-            Contract.Requires(expression.IsNotNull());
-
-            return GetNameFromEpxression(expression);
         }
 
         public static void SetPropertyValue<TClass, TProperty>(this TClass source,
@@ -59,42 +51,6 @@ namespace Extensions
             source.Dispose();
         }
 
-        internal static string GetNameFromEpxression(Expression expression)
-        {
-            if (expression.IsNull())
-            {
-                throw new ArgumentNullException(nameof(expression));
-            }
-
-            var lamda = expression as LambdaExpression;
-            if (lamda.IsNull())
-            {
-                throw new ArgumentNullException(nameof(lamda));
-            }
-
-            var mbe = lamda.Body as MemberExpression;
-            if (mbe != null)
-            {
-                return mbe.Member.Name;
-            }
-
-            var unary = lamda.Body as UnaryExpression;
-            var member = unary?.Operand as MemberExpression;
-
-            if (member != null)
-            {
-                return member.Member.Name;
-            }
-
-            var methodCallExpression = lamda.Body as MethodCallExpression;
-            if (methodCallExpression != null)
-            {
-                return methodCallExpression.Method.Name;
-            }
-
-            throw new Exception("Unexpected expression");
-        }
-
         public static bool EqualityEquals<T>(this T source, T target)
         {
             return EqualityComparer<T>.Default.Equals(source, target);
@@ -110,7 +66,7 @@ namespace Extensions
             return new List<T> { item };
         }
 
-        public static bool IsAnyOfExpectedValues<T>(this T source, params object[] expectedValues) where T : class
+        public static bool HasAny<T>(this T source, params object[] expectedValues) where T : class
         {
             if (source.EqualityEquals<object>(expectedValues))
             {
@@ -124,6 +80,6 @@ namespace Extensions
 
             var result = expectedValues.Any(item => item.EqualityEquals(source));
             return result;
-        }        
+        }
     }
 }

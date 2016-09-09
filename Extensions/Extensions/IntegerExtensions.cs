@@ -22,5 +22,15 @@
         {
             return source.ToString().PadLeft(totalWidth, '0');
         }
+
+        public static bool IsMaxValue(this int source)
+        {
+            return source == int.MaxValue;
+        }
+
+        public static bool IsMinValue(this int source)
+        {
+            return source == int.MinValue;
+        }
     }
 }

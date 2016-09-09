@@ -49,12 +49,5 @@ namespace Extensions
 
             return !fileInfo.Exists;
         }
-
-        public static bool DirectoryNotExists(this FileInfo fileInfo)
-        {
-            Contract.Requires(fileInfo.IsNotNull());
-
-            return !fileInfo.Directory.Exists;
-        }
     }
 }

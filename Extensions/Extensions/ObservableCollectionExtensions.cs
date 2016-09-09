@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.Contracts;
+using System.Linq;
 
 namespace Extensions
 {
@@ -27,7 +28,7 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
             Contract.Requires(itemsToRemove.IsNotNull());
 
-            itemsToRemove.ForEach(item => source.Remove(item));
+            itemsToRemove.ToList().ForEach(item => source.Remove(item));
         }
 
         public static IEnumerable<T> GetRange<T>(this ObservableCollection<T> source, int fromIndex, int toIndex)
