@@ -10,6 +10,7 @@ namespace WpfExtensions
         public static ListCollectionView GetListCollectionView(this ItemsControl itemsControl)
         {
             Contract.Requires(itemsControl.IsNull());
+
             var listCollectionView = (ListCollectionView)CollectionViewSource.GetDefaultView(itemsControl.ItemsSource);
             return listCollectionView;
         }

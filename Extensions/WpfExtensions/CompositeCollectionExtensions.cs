@@ -22,7 +22,7 @@ namespace WpfExtensions
                 throw new ArgumentException("CompositeCollection does not contains ICollectionView to set sort description");
             }
 
-            collectionViews.ForEach(item => item.UpdateSortDescription(sortDescription));
+            collectionViews.ForEach(item => item.UpdateSortDescriptions(sortDescription));
         }
 
         public static IEnumerable<T> ContainerCollectionsOfType<T>(this CompositeCollection compositeCollection)

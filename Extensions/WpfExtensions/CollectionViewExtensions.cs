@@ -16,10 +16,10 @@ namespace WpfExtensions
             collectionView.Filter = filter;
         }
 
-        public static void UpdateSortDescription(this ICollectionView collectionView, SortDescription sortDescription)
+        public static void UpdateSortDescriptions(this ICollectionView collectionView, params SortDescription[] sortDescriptions)
         {
             collectionView.SortDescriptions.Clear();
-            collectionView.SortDescriptions.Add(sortDescription);
+            collectionView.SortDescriptions.AddRange(sortDescriptions);
         }
     }
 }
