@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics.Contracts;
 using Extensions;
 
 namespace WpfExtensions
@@ -18,6 +19,8 @@ namespace WpfExtensions
 
         public static void UpdateSortDescriptions(this ICollectionView collectionView, params SortDescription[] sortDescriptions)
         {
+            Contract.Requires(collectionView.IsNotNull());
+
             collectionView.SortDescriptions.Clear();
             collectionView.SortDescriptions.AddRange(sortDescriptions);
         }
