@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using Extensions.Helpers;
 
 namespace Extensions
 {
@@ -146,9 +147,19 @@ namespace Extensions
             return value.ToEnum<T>();
         }
 
-        public static FileInfo ConvertToFileInfo(string value)
+        public static FileInfo ConvertToFileInfo(this string value)
         {
             return value.ToFileInfo();
+        }
+
+        public static LocalName ToLocalName(this string value)
+        {
+            return new LocalName(value);
+        }
+
+        public static AttributeName ToAttributeName(this string value)
+        {
+            return new AttributeName(value);
         }
     }
 }

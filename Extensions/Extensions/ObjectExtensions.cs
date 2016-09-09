@@ -419,6 +419,7 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
             return source.GetType().IsMarshalByRef;
         }
+
         public static bool HasElementType(this object source)
         {
             Contract.Requires(source.IsNotNull());

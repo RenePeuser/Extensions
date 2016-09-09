@@ -265,7 +265,7 @@ namespace Extensions
             Contract.Requires(source.IsNotNull());
 
             var sourceArray = source.ToArray();
-            return sourceArray.CheckForValues(expectedValues);
+            return sourceArray.HasAny(expectedValues);
         }
     }
 }

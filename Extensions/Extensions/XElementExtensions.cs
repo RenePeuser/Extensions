@@ -1,84 +1,119 @@
 using System;
 using System.Linq;
 using System.Xml.Linq;
+using Extensions.Helpers;
 
 namespace Extensions
 {
     public static class XElementExtensions
     {
-        public static T GetAttributeValue<T>(this XElement xElement, string attributeName,
-            Func<XAttribute, string> getPropertyName, Func<string, T> converter, T defaultValue)
+        public static byte ToByte(this XElement element, byte defaultValue = 0)
         {
-            if (xElement == null)
+            return element.To(defaultValue, Convert.ToByte);
+        }
+
+        public static int ToInt(this XElement element, int defaultValue = 0)
+        {
+            return element.To(defaultValue, Convert.ToInt32);
+        }
+
+        public static double ToDouble(this XElement element, double defaultValue = 0)
+        {
+            return element.To(defaultValue, Convert.ToDouble);
+        }
+
+        public static decimal ToDecimal(this XElement element, decimal defaultValue = 0)
+        {
+            return element.To(defaultValue, Convert.ToDecimal);
+        }
+
+        public static float ToFloat(this XElement element, float defaultValue = 0)
+        {
+            return element.To(defaultValue, Convert.ToSingle);
+        }
+
+        public static bool ToBool(this XElement element, bool defaultValue = false)
+        {
+            return element.To(defaultValue, Convert.ToBoolean);
+        }
+
+        public static string ValueOrDefault(this XElement element, string defaultValue = null)
+        {
+            return element.To(defaultValue, Convert.ToString);
+        }
+
+        public static byte ToByte(this XElement element, AttributeName attributeName, byte defaultValue = 0)
+        {
+            return element.To(attributeName, defaultValue, Convert.ToByte);
+        }
+
+        public static int ToInt(this XElement element, AttributeName attributeName, int defaultValue = 0)
+        {
+            return element.To(attributeName, defaultValue, Convert.ToInt32);
+        }
+
+        public static double ToDouble(this XElement element, AttributeName attributeName, double defaultValue = 0)
+        {
+            return element.To(attributeName, defaultValue, Convert.ToDouble);
+        }
+
+        public static decimal ToDecimal(this XElement element, AttributeName attributeName, decimal defaultValue = 0)
+        {
+            return element.To(attributeName, defaultValue, Convert.ToDecimal);
+        }
+
+        public static float ToFloat(this XElement element, AttributeName attributeName, float defaultValue = 0)
+        {
+            return element.To(attributeName, defaultValue, Convert.ToSingle);
+        }
+
+        public static bool ToBool(this XElement element, AttributeName attributeName, bool defaultValue = false)
+        {
+            return element.To(attributeName, defaultValue, Convert.ToBoolean);
+        }
+
+        public static string ValueOrDefault(this XElement element, AttributeName attributeName, string defaultValue = null)
+        {
+            return element.To(attributeName, defaultValue, Convert.ToString);
+        }
+
+        public static XAttribute Attribute(this XElement document, AttributeName attributeName)
+        {
+            var attribute = document.Attributes().FirstOrDefault(a => a.Name.LocalName.Equals(attributeName.Value));
+            return attribute;
+        }
+
+        private static T To<T>(this XElement element, T defaultValue, Func<string, T> converter)
+        {
+            if (element == null)
             {
                 return defaultValue;
             }
 
-            var attribute = xElement.Attributes().FirstOrDefault(item => getPropertyName(item) == attributeName);
+            if (element.Value.IsEmpty())
+            {
+                return defaultValue;
+            }
+
+            var result = converter(element.Value);
+            return result;
+        }
+
+        private static T To<T>(this XElement element, AttributeName attributeName, T defaultValue, Func<string, T> converter)
+        {
+            if (element == null)
+            {
+                return defaultValue;
+            }
+
+            var attribute = element.Attribute(attributeName);
             if (attribute == null)
             {
                 return defaultValue;
             }
 
-            return converter(attribute.Value);
-        }
-
-        public static T GetAttributeValue<T>(this XElement xElement, string attributeName, Func<string, T> converter,
-            T defaultValue)
-        {
-            return GetAttributeValue(xElement, attributeName, XAttributeExtension.GetLocalName, converter, defaultValue);
-        }
-
-        public static string GetAttributeValue(this XElement xElement, string attributeName,
-            Func<XAttribute, string> getPropertyName, string defaultValue)
-        {
-            return GetAttributeValue(xElement, attributeName, XAttributeExtension.GetLocalName, Convert.ToString,
-                defaultValue);
-        }
-
-        public static string GetAttributeValue(this XElement xElement, string attributeName, string defaultValue = null)
-        {
-            return GetAttributeValue(xElement, attributeName, XAttributeExtension.GetLocalName, defaultValue);
-        }
-
-        public static void SetAttributeValue<T>(this XElement xElement, string attributeName, T value)
-        {
-            if (xElement == null)
-            {
-                return;
-            }
-
-            var attribute = xElement.Attribute(attributeName);
-            if (attribute == null)
-            {
-                return;
-            }
-
-            attribute.Value = value.ToString();
-        }
-
-        public static bool HasExpectedAttributeWithExpectedValue<T>(this XElement xElement, string attributeName,
-            Func<string, T> converter, T expectedValue)
-        {
-            var result = xElement.GetAttributeValue(attributeName, converter, default(T));
-            return ObjectExtensions.RefEquals(result, expectedValue);
-        }
-
-        public static bool HasExpectedAttributeWithExpectedValue(this XElement xElement, string attributeName,
-            string expectedValue)
-        {
-            var result = GetAttributeValue(xElement, attributeName, XAttributeExtension.GetLocalName, null);
-            return result.NullableEqual(expectedValue);
-        }
-
-        public static string GetName(XElement xElement)
-        {
-            return xElement?.Name.ToString() ?? string.Empty;
-        }
-
-        public static string GetLocalName(XElement xElement)
-        {
-            return xElement == null ? string.Empty : xElement.Name.LocalName;
+            var result = converter(attribute.Value);
+            return result;
         }
     }
 }

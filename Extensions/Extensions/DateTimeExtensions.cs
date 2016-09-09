@@ -7,17 +7,17 @@ namespace Extensions
 {
     public static class DateTimeExtensions
     {
-        public static DateTime SetTime(this DateTime dateTime, int hours = 0, int minutes = 0, int seconds = 0)
+        public static DateTime ChangeTime(this DateTime dateTime, int hours = 0, int minutes = 0, int seconds = 0)
         {
             return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, hours, minutes, seconds);
         }
 
-        public static DateTime SetHours(this DateTime dateTime, int hours)
+        public static DateTime ChangeHours(this DateTime dateTime, int hours)
         {
             return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, hours, dateTime.Minute, dateTime.Second);
         }
 
-        public static DateTime SetMinutes(this DateTime dateTime, int minutes)
+        public static DateTime ChangeMinutes(this DateTime dateTime, int minutes)
         {
             return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, minutes, dateTime.Second);
         }
