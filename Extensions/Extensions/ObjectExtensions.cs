@@ -9,7 +9,6 @@ namespace Extensions
     public static class ObjectExtensions
     {
         public static bool HasAny(this object source, params object[] expectedValues)
-
         {
             Contract.Requires(source.IsNotNull());
 
