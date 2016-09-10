@@ -218,5 +218,11 @@ namespace Extensions.Test
         {
             Assert.AreEqual("Test", _xDocument.ElementBy("ElementWithValue".ToLocalName()).ValueOrDefault());
         }
+
+        [TestMethod]
+        public void IsType()
+        {
+            Assert.IsTrue(ObjectExtensions.IsTypeOf<int>(null));
+        }
     }
 }

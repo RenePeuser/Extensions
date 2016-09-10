@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using Extensions.Helpers;
@@ -77,10 +78,34 @@ namespace Extensions
             return element.To(attributeName, defaultValue, Convert.ToString);
         }
 
-        public static XAttribute Attribute(this XElement document, AttributeName attributeName)
+        public static XAttribute AttributeBy(this XElement document, AttributeName attributeName)
         {
             var attribute = document.Attributes().FirstOrDefault(a => a.Name.LocalName.Equals(attributeName.Value));
             return attribute;
+        }
+
+        public static XElement ElementBy(this XElement element, LocalName localName)
+        {
+            var result = element.ElementsBy(localName).FirstOrDefault();
+            return result;
+        }
+
+        public static IEnumerable<XElement> ElementsBy(this XElement element, LocalName localName)
+        {
+            var result = element.Descendants().Where(item => item.Name.LocalName.Equals(localName.Value));
+            return result;
+        }
+
+        public static XElement ElementBy(this XElement element, AttributeName attributeName)
+        {
+            var result = element.ElementsBy(attributeName).FirstOrDefault();
+            return result;
+        }
+
+        public static IEnumerable<XElement> ElementsBy(this XElement element, AttributeName attributeName)
+        {
+            var results = element.Descendants().Where(item => item.Attributes().Any(a => a.Name.LocalName.Equals(attributeName.Value)));
+            return results;
         }
 
         private static T To<T>(this XElement element, T defaultValue, Func<string, T> converter)
@@ -106,7 +131,7 @@ namespace Extensions
                 return defaultValue;
             }
 
-            var attribute = element.Attribute(attributeName);
+            var attribute = element.AttributeBy(attributeName);
             if (attribute == null)
             {
                 return defaultValue;
