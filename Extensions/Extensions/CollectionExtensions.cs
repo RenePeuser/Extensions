@@ -56,5 +56,27 @@ namespace Extensions
             var index = sourceCollection.IndexOf(oldItem);
             sourceCollection.ReplaceAt(index, newItem);
         }
+
+        public static void SyncCollectionFrom<T, TProperty>(this ICollection<T> target, IEnumerable<T> source, Func<T, TProperty> selector) where T : class
+        {
+            Contract.Requires(target.IsNotNull());
+            Contract.Requires(source.IsNotNull());
+            Contract.Requires(selector.IsNotNull());
+
+            var sourceItems = source.ToList();
+
+            InvokeActionForExceptItems(target, sourceItems, selector, target.Add);
+            InvokeActionForExceptItems(sourceItems, target, selector, item => target.Remove(item));
+        }
+
+        private static void InvokeActionForExceptItems<T, TProperty>(
+            ICollection<T> first,
+            IEnumerable<T> second,
+            Func<T, TProperty> selector,
+            Action<T> action) where T : class
+        {
+            var exceptItems = second.Except(first, selector).ToList();
+            exceptItems.ForEach(action);
+        }
     }
 }

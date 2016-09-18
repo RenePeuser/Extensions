@@ -80,24 +80,6 @@ namespace Extensions
             Contract.Requires(type.IsNotNull());
 
             return type == typeof(T);
-        }
-
-        public static string GetManifestResourceString(this Type type, string resourceName)
-        {
-            Contract.Requires(type.IsNotNull());
-            Contract.Requires(resourceName.IsNotNullOrEmpty());
-            Contract.Requires(type.Assembly.GetManifestResourceNames().Contains(resourceName));
-
-            var assembly = type.Assembly;
-            var resourceFullName = $"{assembly.GetName().Name}.{resourceName}";
-
-            string result;
-            using (var stream = type.Assembly.GetManifestResourceStream(resourceFullName))
-            {
-                result = stream.ReadToEnd();
-            }
-
-            return result;
-        }
+        }        
     }
 }

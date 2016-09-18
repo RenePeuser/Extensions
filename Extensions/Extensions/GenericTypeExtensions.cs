@@ -4,6 +4,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Text;
 
 namespace Extensions
 {
@@ -80,6 +81,87 @@ namespace Extensions
 
             var result = expectedValues.Any(item => item.EqualityEquals(source));
             return result;
+        }
+
+        public static void IfNotNullThen<T>(this T source, Func<T, Action> action) where T : class
+        {
+            if (source == null)
+            {
+                return;
+            }
+
+            if (action == null)
+            {
+                throw new ArgumentNullException("action");
+            }
+
+            action(source)();
+        }
+
+        public static void IfNotNullThen<T>(this T source, Action action)
+        {
+            if (source == null)
+            {
+                return;
+            }
+
+            if (action == null)
+            {
+                throw new ArgumentNullException("action");
+            }
+
+            action();
+        }
+
+        public static string ToString<T>(this T source, string title, params Expression<Func<T, object>>[] infoSelector) where T : class
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            if (title == null)
+            {
+                throw new ArgumentNullException("title");
+            }
+
+            if (infoSelector == null)
+            {
+                throw new ArgumentNullException("infoSelector");
+            }
+
+            var compiledExpressions = infoSelector.ToCompiledExpressionWithInfo();
+            var stringbuilder = new StringBuilder();
+            stringbuilder.AppendLine(title);
+            stringbuilder.AppendLine(source.ToString(compiledExpressions));
+            return stringbuilder.ToString();
+        }
+
+        public static string ToString<T>(this T source, Dictionary<string, Func<T, object>> compiledExpressions)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            if (compiledExpressions == null)
+            {
+                throw new ArgumentNullException("compiledExpressions");
+            }
+
+            var stringbuilder = new StringBuilder();
+            compiledExpressions.ForEach(item => stringbuilder.Append(item.ToString(source)));
+            return stringbuilder.ToString();
+        }
+
+        public static string GetTypeName<T>(this T source)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            return source.GetType().Name;
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
@@ -74,6 +76,18 @@ namespace Extensions
             }
 
             return name;
+        }
+
+        public static Dictionary<string, Func<T, object>> ToCompiledExpressionWithInfo<T>(
+            this Expression<Func<T, object>>[] expressions)
+        {
+            if (expressions == null)
+            {
+                throw new ArgumentNullException("expressions");
+            }
+
+            var result = expressions.ToDictionary(item => item.NameOf(), item => item.Compile());
+            return result;
         }
     }
 }

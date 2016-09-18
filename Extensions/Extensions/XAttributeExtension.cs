@@ -47,11 +47,6 @@ namespace Extensions
                 return defaultValue;
             }
 
-            if (element.Value.IsEmpty())
-            {
-                return defaultValue;
-            }
-
             var result = converter(element.Value);
             return result;
         }

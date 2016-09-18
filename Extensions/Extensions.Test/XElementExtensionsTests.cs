@@ -12,7 +12,7 @@ namespace Extensions.Test
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            var resource = typeof(ElementByLocalNameTest).GetManifestResourceString("Test.xml");
+            var resource = typeof(ElementByLocalNameTest).Assembly.GetManifestResourceString("Test.xml");
             _xDocument = XDocument.Parse(resource);
         }
 
@@ -43,7 +43,7 @@ namespace Extensions.Test
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            var resource = typeof(ElementByLocalNameTest).GetManifestResourceString("MultiElements.xml");
+            var resource = typeof(ElementByLocalNameTest).Assembly.GetManifestResourceString("MultiElements.xml");
             _xDocument = XDocument.Parse(resource);
         }
 
@@ -71,7 +71,7 @@ namespace Extensions.Test
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            var resource = typeof(ElementByLocalNameTest).GetManifestResourceString("ElementsWithAttributes.xml");
+            var resource = typeof(ElementByLocalNameTest).Assembly.GetManifestResourceString("ElementsWithAttributes.xml");
             _xDocument = XDocument.Parse(resource);
         }
 
@@ -110,7 +110,7 @@ namespace Extensions.Test
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            var resource = typeof(ElementByLocalNameTest).GetManifestResourceString("ElementsWithAttributes.xml");
+            var resource = typeof(ElementByLocalNameTest).Assembly.GetManifestResourceString("ElementsWithAttributes.xml");
             _xDocument = XDocument.Parse(resource);
         }
 
@@ -135,7 +135,7 @@ namespace Extensions.Test
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            var resource = typeof(ElementByLocalNameTest).GetManifestResourceString("ElementsWithAttributes.xml");
+            var resource = typeof(ElementByLocalNameTest).Assembly.GetManifestResourceString("ElementsWithAttributes.xml");
             _xDocument = XDocument.Parse(resource);
         }
 
@@ -160,7 +160,7 @@ namespace Extensions.Test
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            var resource = typeof(ElementByLocalNameTest).GetManifestResourceString("ElementsWithAttributes.xml");
+            var resource = typeof(ElementByLocalNameTest).Assembly.GetManifestResourceString("ElementsWithAttributes.xml");
             _xDocument = XDocument.Parse(resource);
         }
 
@@ -185,7 +185,7 @@ namespace Extensions.Test
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            var resource = typeof(ElementByLocalNameTest).GetManifestResourceString("ElementsWithAttributes.xml");
+            var resource = typeof(ElementByLocalNameTest).Assembly.GetManifestResourceString("ElementsWithAttributes.xml");
             _xDocument = XDocument.Parse(resource);
         }
 

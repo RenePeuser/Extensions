@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="ActionExtensions.cs" />
     <Compile Include="ArrayExtensions.cs" />
+    <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="BoolExtensions.cs" />
     <Compile Include="ComputerInfoExtensions.cs" />
     <Compile Include="ConcurrentDictionaryExtensions.cs" />
@@ -121,7 +122,7 @@
     <Compile Include="TypeExtensions.cs" />
     <Compile Include="TimeSpanExtensions.cs" />
     <Compile Include="XAttributeExtension.cs" />
-    <Compile Include="XDocumentExtensions.cs" />
+    <Compile Include="XContainerExtensions.cs" />
     <Compile Include="XElementExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
