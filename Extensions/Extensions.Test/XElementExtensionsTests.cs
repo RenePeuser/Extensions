@@ -12,7 +12,7 @@ namespace Extensions.Test
         [ClassInitialize]
         public static void ClassInit(TestContext context)
         {
-            var resource = typeof(ElementByLocalNameTest).Assembly.GetManifestResourceString("Test.xml");
+            var resource = typeof(ElementByLocalNameTest).Assembly.GetManifestResourceString("PrimitiveTypes.xml");
             _xDocument = XDocument.Parse(resource);
         }
 
@@ -50,14 +50,14 @@ namespace Extensions.Test
         [TestMethod]
         public void ExpectedCount()
         {
-            Assert.AreEqual(7, _xDocument.ElementsBy("StringValue".ToLocalName()).Count());
+            Assert.AreEqual(7, _xDocument.ElementsBy("StringElement".ToLocalName()).Count());
         }
 
         [TestMethod]
         public void ExpectedValues()
         {
             var expectedStrings = new[] { "Test1", "Test2", "Test3", "Test4", "Test5", "Test6", "Test7" };
-            var itemsFromXml = _xDocument.ElementsBy("StringValue".ToLocalName()).Select(item => item.ValueOrDefault());
+            var itemsFromXml = _xDocument.ElementsBy("StringElement".ToLocalName()).Select(item => item.ValueOrDefault());
 
             Assert.IsTrue(expectedStrings.SequenceEqual(itemsFromXml));
         }
@@ -115,15 +115,15 @@ namespace Extensions.Test
         }
 
         [TestMethod]
-        public void GetInt32Value()
+        public void GetIntValue()
         {
-            Assert.AreEqual(1, _xDocument.ElementBy("IntValue".ToAttributeName()).ToInt());
+            Assert.AreEqual(5, _xDocument.ElementBy("IntValue".ToLocalName()).AttributeBy("Value".ToAttributeName()).ToInt());
         }
 
         [TestMethod]
-        public void IsIntType()
+        public void IsInt()
         {
-            Assert.AreEqual(typeof(int), _xDocument.ElementBy("IntValue".ToAttributeName()).ToInt().GetType());
+            Assert.AreEqual(typeof(int), _xDocument.ElementBy("IntValue".ToLocalName()).AttributeBy("Value".ToAttributeName()).ToInt().GetType());
         }
     }
 
@@ -142,13 +142,13 @@ namespace Extensions.Test
         [TestMethod]
         public void GetInt32Value()
         {
-            Assert.AreEqual(3.33, _xDocument.ElementBy("DoubleValue".ToAttributeName()).ToDouble());
+            Assert.AreEqual(3.33, _xDocument.ElementBy("DoubleValue".ToLocalName()).AttributeBy("Value".ToAttributeName()).ToDouble());
         }
 
         [TestMethod]
         public void IsIntType()
         {
-            Assert.AreEqual(typeof(double), _xDocument.ElementBy("DoubleValue".ToAttributeName()).ToDouble().GetType());
+            Assert.AreEqual(typeof(double), _xDocument.ElementBy("DoubleValue".ToLocalName()).AttributeBy("Value".ToAttributeName()).ToDouble().GetType());
         }
     }
 
@@ -165,15 +165,15 @@ namespace Extensions.Test
         }
 
         [TestMethod]
-        public void GetInt32Value()
+        public void GetDeicmalValue()
         {
-            Assert.AreEqual(3.33, _xDocument.ElementBy("DoubleValue".ToAttributeName()).ToDecimal());
+            Assert.AreEqual(new decimal(4.44), _xDocument.ElementBy("DecimalValue".ToLocalName()).AttributeBy("Value".ToAttributeName()).ToDecimal());
         }
 
         [TestMethod]
-        public void IsIntType()
+        public void GetIntValue()
         {
-            Assert.AreEqual(typeof(double), _xDocument.ElementBy("DoubleValue".ToAttributeName()).ToDecimal().GetType());
+            Assert.AreEqual(typeof(decimal), _xDocument.ElementBy("DecimalValue".ToLocalName()).AttributeBy("Value".ToAttributeName()).ToDecimal().GetType());
         }
     }
 
@@ -217,12 +217,6 @@ namespace Extensions.Test
         public void IfExpectedValueIfExists()
         {
             Assert.AreEqual("Test", _xDocument.ElementBy("ElementWithValue".ToLocalName()).ValueOrDefault());
-        }
-
-        [TestMethod]
-        public void IsType()
-        {
-            Assert.IsTrue(ObjectExtensions.IsTypeOf<int>(null));
         }
     }
 }

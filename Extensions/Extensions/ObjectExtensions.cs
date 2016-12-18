@@ -175,8 +175,7 @@ namespace Extensions
                 return (DateTime)source;
             }
 
-            DateTime result;
-            DateTime.TryParse(source.ToString(), out result);
+            DateTime.TryParse(source.ToString(), out var result);
             return result;
         }
 
@@ -208,8 +207,7 @@ namespace Extensions
 
         public static T ToEnum<T>(this object value) where T : struct
         {
-            T result;
-            if (!Enum.TryParse(value.ToString(), out result))
+            if (!Enum.TryParse(value.ToString(), out T result))
             {
                 throw new Exception("Can not parse enum");
             }

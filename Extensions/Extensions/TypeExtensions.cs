@@ -80,6 +80,6 @@ namespace Extensions
             Contract.Requires(type.IsNotNull());
 
             return type == typeof(T);
-        }        
+        }
     }
 }

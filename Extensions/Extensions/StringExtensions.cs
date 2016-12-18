@@ -15,8 +15,7 @@ namespace Extensions
                 return default(double);
             }
 
-            double result;
-            double.TryParse(value, NumberStyles.Float, numberFormatInfo, out result);
+            double.TryParse(value, NumberStyles.Float, numberFormatInfo, out double result);
             return result;
         }
 
@@ -27,8 +26,7 @@ namespace Extensions
                 return default(decimal);
             }
 
-            decimal result;
-            decimal.TryParse(value, NumberStyles.Float, numberFormatInfo, out result);
+            decimal.TryParse(value, NumberStyles.Float, numberFormatInfo, out decimal result);
             return result;
         }
 
@@ -39,8 +37,7 @@ namespace Extensions
                 return Guid.Empty;
             }
 
-            Guid result;
-            Guid.TryParse(value, out result);
+            Guid.TryParse(value, out var result);
             return result;
         }
 
@@ -134,8 +131,7 @@ namespace Extensions
 
         public static T ToEnum<T>(this string value) where T : struct
         {
-            T result;
-            if (!Enum.TryParse(value, out result))
+            if (!Enum.TryParse(value, out T result))
             {
                 throw new Exception("Can not parse enum value");
             }
